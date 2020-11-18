@@ -1,41 +1,147 @@
 <nav>
   <mat-toolbar id="toolbar">
-    <h1 id="toolbarText">Cuestionario</h1>
+    <h1 id="toolbarText">Cuestionario de Evaluacion de NNA</h1>
     <span class="example-spacer"></span>
   </mat-toolbar>
 </nav>
 
-<h1 id="textHead">Responde detenidamente</h1>
+<h1 id="textHead">Ingrese su Informacion</h1>
 <!------------------------->
 <div id="divCuestions">
-  <h3>Pregunta 1</h3>
-  <p style="margin-top: -1rem">
-    <mat-form-field appearance="legacy">
-      <input matInput />
+  <!-------------------------------------------------------->
+  <mat-form-field appearance="fill" id="fieldFecha" class="alingItems">
+    <mat-label>Elija la Fecha</mat-label>
+    <input matInput [matDatepicker]="picker" id="fecha" />
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+  <!-------------------------------------------------------->
+  <mat-card class="alingItems" id="fieldCasaHogar">
+    <mat-form-field class="example-full-width alingItems">
+      <h3>Nombre de la casa hogar o alvergue</h3>
+      <input matInput id="casaHogar" />
     </mat-form-field>
-  </p>
-  <!------------------------->
-  <h3>Pregunta 2</h3>
-  <p style="margin-top: -1rem">
-    <mat-form-field appearance="legacy">
-      <input matInput />
+  </mat-card>
+  <!-------------------------------------------------------->
+  <mat-card class="alingItems" id="nna">
+    <mat-form-field class="example-full-width">
+      <h3>Código de la NNA</h3>
+      <input matInput id="codigoNNA" />
     </mat-form-field>
-  </p>
-  <!------------------------->
-  <h3>Pregunta 3</h3>
-  <p style="margin-top: -1rem">
-    <mat-form-field appearance="legacy">
-      <input matInput />
+
+    <mat-form-field class="example-full-width">
+      <h3>Primer Nombre de la NNA</h3>
+      <input matInput id="primerNombreNNA" />
     </mat-form-field>
-  </p>
-  <!------------------------->
-  <h3>Pregunta 4</h3>
-  <p style="margin-top: -1rem">
-    <mat-form-field appearance="legacy">
-      <input matInput />
+
+    <mat-form-field class="example-full-width">
+      <h3>Fecha de Nacimiento</h3>
+      <input matInput id="fechaNacimiento" />
     </mat-form-field>
-  </p>
-  <!------------------------->
+
+    <mat-form-field class="example-full-width">
+      <h3>CURP</h3>
+      <input matInput id="curp" />
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <h3>Grado Escolar</h3>
+      <input matInput id="gradoEscolar" />
+    </mat-form-field>
+  </mat-card>
+  <!-------------------------------------------------------->
+  <mat-card class="alingItems" id="fieldMedico">
+    <mat-form-field class="example-full-width">
+      <h3>Diagnóstico Médico</h3>
+      <input matInput id="diagnosticoMedico" />
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <h3>Peso</h3>
+      <input matInput id="peso" />
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <h3>Talla</h3>
+      <input matInput id="talla" />
+    </mat-form-field>
+  </mat-card>
+  <!-------------------------------------------------------->
+  <mat-card class="alingItems" id="fieldPsicologico">
+    <mat-form-field class="example-full-width">
+      <h3>Diagnóstico Psicológico</h3>
+      <input matInput id="diagnosticoPsicologico" />
+    </mat-form-field>
+
+    <h3>Resultado de Evaluciones Psicológicas</h3>
+    <mat-form-field appearance="fill">
+      <mat-label>CI</mat-label>
+      <mat-select>
+        <mat-option *ngFor="let ci of cis" [value]="ci.value">
+          {{ ci.viewValue }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>LectoEscritura</mat-label>
+      <mat-select>
+        <mat-option *ngFor="let ci of cis" [value]="ci.value">
+          {{ ci.viewValue }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Raven</mat-label>
+      <mat-select>
+        <mat-option *ngFor="let ci of cis" [value]="ci.value">
+          {{ ci.viewValue }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>ENI</mat-label>
+      <mat-select>
+        <mat-option *ngFor="let ci of cis" [value]="ci.value">
+          {{ ci.viewValue }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Detector</mat-label>
+      <mat-select>
+        <mat-option *ngFor="let ci of cis" [value]="ci.value">
+          {{ ci.viewValue }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Habilidades Sociales</mat-label>
+      <mat-select>
+        <mat-option *ngFor="let ci of cis" [value]="ci.value">
+          {{ ci.viewValue }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Resultados de Evaluciones ABT</mat-label>
+      <mat-select>
+        <mat-option *ngFor="let abt of abts" [value]="abt.value">
+          {{ abt.viewValue }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </mat-card>
+  <!-------------------------------------------------------->
 </div>
 
-<a href="/home" style="text-decoration: none;"><button mat-button id="btnContinue">Finalizar</button></a>
+<a href="/home" style="text-decoration: none">
+  <button mat-button id="btnContinue" style="margin-bottom: 2rem">
+    Finalizar
+  </button>
+</a>

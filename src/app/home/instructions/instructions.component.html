@@ -1,6 +1,6 @@
 <nav>
   <mat-toolbar id="toolbar">
-    <h1 id="toolbarText">Instrucciones</h1>
+    <h1 id="toolbarText">Inicio de Sesion</h1>
     <span class="example-spacer"></span>
   </mat-toolbar>
 </nav>
@@ -11,21 +11,23 @@
   alt="logo create purpose"
 />
 
-<div id="divTextGeneral">
-  <h1 class="divText">Hola ¡Agradecemos que estes aqui!</h1>
-  <h3 class="divText">
-    Realizar este cuestionario es sencillo, solo debes seguir los siguientes
-    pasos
-  </h3>
+<h1 id="textHead">Ingrese sus Datos</h1>
 
-  <div class="divText">
-    <ul>
-      <li>Intenta ser lo mas sincero en las respuestas</li>
-      <li>Tomate tu tiempo</li>
-      <li>Consulta a un adulto si es necesario</li>
-      <li>Haz click en continuar cuando estes listo</li>
-    </ul>
+
+<!--------------------------------------------->
+<form id="divCuestions">
+  <div class="form-group">
+    <label for="exampleInputEmail1" >Usuario</label>
+    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+    <small id="emailHelp" class="form-text text-muted">Nunca Comparta sus datos.</small>
   </div>
-</div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Contraseña</label>
+    <input type="password" class="form-control" id="exampleInputPassword1">
+  </div>
+</form>
+<!--------------------------------------------->
 
-<a href="/tests" style="text-decoration: none;"><button mat-button id="btnContinue">Comenzar</button></a>
+ <a href="/tests" style="text-decoration: none"
+  ><button mat-button id="btnContinue">Iniciar Sesion</button></a
+>
