@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/firestore';
+
+
 interface CI {
   value: string;
   viewValue: string;
@@ -9,10 +12,6 @@ interface CI {
   templateUrl: './tests.component.html',
   styleUrls: ['./tests.component.css']
 })
-
-
-
-
 
 export class TestsComponent implements OnInit {
 
@@ -30,20 +29,22 @@ export class TestsComponent implements OnInit {
     { value: '4', viewValue: '4' }
   ];
 
-  constructor() {
-   }
+  constructor(private db: AngularFirestore) {
+  }
+
+  setData() {
+    let datos = (<HTMLInputElement>document.querySelector('#datos')).value;
+    this.db.collection('informacion').doc().set({
+      datos: datos
+    })
+  }
 
   ngOnInit(): void {
-    const db = firebase.firestore();
-    const form = document.querySelector("#form")
 
-    const numero  = form.addEventListener('submit',e =>{
+    const form = document.querySelector("#form")
+    const numero = form.addEventListener('submit', e => {
       e.preventDefault();
-      let datos = (<HTMLInputElement>document.querySelector('#datos')).value;
-     db.collection('informacion').doc().set({
-       datos: datos
-     })
-      
+      this.setData()
     })
 
   }
