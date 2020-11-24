@@ -36,16 +36,19 @@ export class TestsComponent implements OnInit {
     let datos = (<HTMLInputElement>document.querySelector('#datos')).value;
     this.db.collection('informacion').doc().set({
       datos: datos
+
     })
   }
 
   ngOnInit(): void {
-
-    const form = document.querySelector("#form")
-    const numero = form.addEventListener('submit', e => {
-      e.preventDefault();
-      this.setData()
-    })
+    /*
+       const form = document.querySelector("#form")
+       form.addEventListener('submit', e => {
+         e.preventDefault();
+        this.setData()
+         console.log('clickeo')
+       })
+       */
 
   }
 
