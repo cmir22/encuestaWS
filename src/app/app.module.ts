@@ -26,6 +26,8 @@ import { TestsComponent } from './tests/tests.component';
 import { environment } from '../environments/environment'
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { DataComponent } from './admin/data/data.component';
+import { LoginComponent } from './admin/login/login.component';
 // End Conection with firebase
 
 const angularMaterial = [
@@ -47,6 +49,8 @@ const angularMaterial = [
     HomeComponent,
     InstructionsComponent,
     TestsComponent,
+    DataComponent,
+    LoginComponent,
 
   ],
   imports: [

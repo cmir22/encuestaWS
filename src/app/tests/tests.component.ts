@@ -11,13 +11,13 @@ import { AngularFirestore } from '@angular/fire/firestore';
 
 export class TestsComponent implements OnInit {
 
-  ci= "";
-  lectoEscritura= "";
-  raven= "";
-  eni= "";
-  detector= "";
-  habilidadesSociales= "";
-  resultadosEvaluacionesABT= "";
+  ci = "";
+  lectoEscritura = "";
+  raven = "";
+  eni = "";
+  detector = "";
+  habilidadesSociales = "";
+  resultadosEvaluacionesABT = "";
 
 
   constructor(private db: AngularFirestore,) {
@@ -39,11 +39,11 @@ export class TestsComponent implements OnInit {
       DiagnosticoPsicologico: diagnosticoPsicologico,
       CI: this.ci,
       LectoEscritura: this.lectoEscritura,
-      Raven:this.raven,
+      Raven: this.raven,
       ENI: this.eni,
       Detector: this.detector,
       HabilidadesSociales: this.habilidadesSociales,
-      ResultadosEvaluacionesABT:this.resultadosEvaluacionesABT
+      ResultadosEvaluacionesABT: this.resultadosEvaluacionesABT
 
     })
   }
@@ -52,7 +52,7 @@ export class TestsComponent implements OnInit {
 
     const form = document.querySelector("#form")
     form.addEventListener('submit', e => {
-      let ci= "";
+      let ci = "";
       let fecha = (<HTMLInputElement>document.querySelector('#fecha')).value;
       let casaHogar = (<HTMLInputElement>document.querySelector('#casaHogar')).value;
       let codigoNNA = (<HTMLInputElement>document.querySelector('#codigoNNA')).value;
@@ -65,7 +65,7 @@ export class TestsComponent implements OnInit {
       let talla = (<HTMLInputElement>document.querySelector('#talla')).value;
       let diagnosticoPsicologico = (<HTMLInputElement>document.querySelector('#diagnosticoPsicologico')).value;
       e.preventDefault();
-      this.setData(fecha, casaHogar, codigoNNA, primerNombreNNA,fechaNacimiento, curp, gradoEscolar, diagnosticoMedico, peso, talla, diagnosticoPsicologico);
+      this.setData(fecha, casaHogar, codigoNNA, primerNombreNNA, fechaNacimiento, curp, gradoEscolar, diagnosticoMedico, peso, talla, diagnosticoPsicologico);
 
     })
 
