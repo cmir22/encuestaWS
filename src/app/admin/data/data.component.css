@@ -1,0 +1,25 @@
+/* Toolbar */
+#toolbarText {
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+}
+
+#toolbar {
+  color: white;
+  background-color: #633c88;
+}
+
+/* Div by data*/
+.cardDatos {
+  background-color: #633c88;
+  margin-left: 2rem;
+  margin-right: 2rem;
+  display: grid;
+  margin-top: 1rem;
+  color: white;
+}
+
+#divCards {
+  margin-top: 2rem;
+}

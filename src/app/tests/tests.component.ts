@@ -20,7 +20,7 @@ export class TestsComponent implements OnInit {
   resultadosEvaluacionesABT = "";
 
 
-  constructor(private db: AngularFirestore,) {
+  constructor(private db: AngularFirestore) {
   }
 
   setData(fecha, casaHogar, codigoNNA, primerNombreNNA, fechaNacimiento, curp, gradoEscolar

@@ -1,1 +1,14 @@
-<p>data works!</p>
+<nav>
+  <mat-toolbar id="toolbar">
+    <h1 id="toolbarText">Base de Datos</h1>
+    <span class="example-spacer"></span>
+  </mat-toolbar>
+</nav>
+
+<div id="divCards">
+  <mat-card *ngFor="let doc of datos" class="cardDatos">
+    <h4 class="">{{ doc.CURP }}</h4>
+    <h4>{{ doc.CasaHogar }}</h4>
+    <h4>{{ doc.CodigoNNA }}</h4>
+  </mat-card>
+</div>
