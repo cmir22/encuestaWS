@@ -20,6 +20,22 @@
   color: white;
 }
 
+
+/* CARDS */
 #divCards {
   margin-top: 2rem;
+}
+
+.nombreNNA{
+  font-family: 'Noto Sans', sans-serif;
+  color: black;
+  border-radius: 2px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  text-align: center;
+  background-color: #EDE9F2;
+}
+
+.descripcionBD{
+  color: #DED0F2;
+  font-family: 'Noto Sans', sans-serif;
 }

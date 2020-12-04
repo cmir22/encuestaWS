@@ -1,3 +1,5 @@
+
+
 <nav>
   <mat-toolbar id="toolbar">
     <h1 id="toolbarText">Base de Datos</h1>
@@ -7,8 +9,21 @@
 
 <div id="divCards">
   <mat-card *ngFor="let doc of datos" class="cardDatos">
-    <h4 class="">{{ doc.CURP }}</h4>
-    <h4>{{ doc.CasaHogar }}</h4>
-    <h4>{{ doc.CodigoNNA }}</h4>
+    <h4 class="nombreNNA">{{ doc.PrimerNombreNNA }}</h4>
+    <h4><span class="descripcionBD">Fecha: </span> {{ doc.Fecha }}</h4>
+    <h4><span class="descripcionBD">Fecha Nacimiento: </span>{{ doc.FechaNacimiento }}</h4>
+    <h4><span class="descripcionBD">CURP: </span>{{ doc.CURP }}</h4>
+    <h4><span class="descripcionBD">Grado Escolar: </span>{{ doc.GradoEscolar }}</h4>
+    <h4><span class="descripcionBD">Diagnostico Medico: </span>{{ doc.DiagnosticoMedico }}</h4>
+    <h4><span class="descripcionBD">Peso: </span>{{ doc.Peso }}</h4>
+    <h4><span class="descripcionBD">Talla: </span>{{ doc.Talla }}</h4>
+    <h4><span class="descripcionBD">Diagnostico Psicologico: </span>{{ doc.DiagnosticoPsicologico }}</h4>
+    <h4><span class="descripcionBD">CI: </span> {{ doc.CI }}</h4>
+    <h4><span class="descripcionBD">Lecto Escritura: </span> {{ doc.LectoEscritura }}</h4>
+    <h4><span class="descripcionBD">Raven: </span> {{ doc.Raven }}</h4>
+    <h4><span class="descripcionBD">ENI: </span> {{ doc.ENI }}</h4>
+    <h4><span class="descripcionBD">Detector: </span> {{ doc.Detector }}</h4>
+    <h4><span class="descripcionBD">Habilidades Sociales: </span> {{ doc.HabilidadesSociales }}</h4>
+    <h4><span class="descripcionBD">Resultados Evaluaciones ABT: </span> {{ doc.ResultadosEvaluacionesABT }}</h4>
   </mat-card>
 </div>
