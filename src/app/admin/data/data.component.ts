@@ -7,18 +7,16 @@ import { AngularFirestore } from '@angular/fire/firestore';
   styleUrls: ['./data.component.css']
 })
 
-
-
 export class DataComponent implements OnInit {
-  
-  constructor(private firestore: AngularFirestore) {
 
+
+
+  constructor(private db: AngularFirestore) {
   }
 
-  datos: any[] = []
+  datos: any[] = [];
   getData() {
-    
-    this.firestore
+    this.db
       .collection("informacion")
       .get()
       .subscribe((querySnapshot) => {
@@ -28,8 +26,20 @@ export class DataComponent implements OnInit {
       });
   }
 
+  getDeleteButtons(){
+    const btnsDelete = document.querySelectorAll('.btnDelete')
+    btnsDelete.forEach(btn => {
+      btn.addEventListener('click', () =>{
+        console.log("Clickeado")
+      })
+    })
+    
+  }
+
   ngOnInit(): void {
     this.getData();
+    this.getDeleteButtons();
+
 
   }
 

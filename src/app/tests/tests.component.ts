@@ -25,7 +25,8 @@ export class TestsComponent implements OnInit {
 
   setData(fecha, casaHogar, codigoNNA, primerNombreNNA, fechaNacimiento, curp, gradoEscolar
     , diagnosticoMedico, peso, talla, diagnosticoPsicologico) {
-    this.db.collection('informacion').doc().set({
+    const customID = this.db.createId();
+    this.db.collection('informacion').doc(`${customID}`).set({
       Fecha: fecha,
       CasaHogar: casaHogar,
       CodigoNNA: codigoNNA,
@@ -43,8 +44,8 @@ export class TestsComponent implements OnInit {
       ENI: this.eni,
       Detector: this.detector,
       HabilidadesSociales: this.habilidadesSociales,
-      ResultadosEvaluacionesABT: this.resultadosEvaluacionesABT
-
+      ResultadosEvaluacionesABT: this.resultadosEvaluacionesABT,
+      id: customID
     })
   }
 
