@@ -24,6 +24,6 @@
     <h4><span class="descripcionBD">Detector: </span> {{ doc.Detector }}</h4>
     <h4><span class="descripcionBD">Habilidades Sociales: </span> {{ doc.HabilidadesSociales }}</h4>
     <h4><span class="descripcionBD">Resultados Evaluaciones ABT: </span> {{ doc.ResultadosEvaluacionesABT }}</h4>
-    <button mat-raised-button class="btnDelete" data-id="{{doc.id}}">Borrar</button>
+    <button mat-raised-button id="btnDelete" (click)="deleteElement(doc.id)" >Eliminar</button>
   </mat-card>
 </div>

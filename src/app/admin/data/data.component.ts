@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
+import Swal from 'sweetalert2'
+
+
 
 @Component({
   selector: 'app-data',
@@ -9,10 +12,43 @@ import { AngularFirestore } from '@angular/fire/firestore';
 
 export class DataComponent implements OnInit {
 
-
-
   constructor(private db: AngularFirestore) {
   }
+
+
+
+  ngOnInit(): void {
+    this.getData();
+
+  }
+
+  deleteElement(id) {
+
+    Swal.fire({
+      title: 'Borrar',
+      text: "¿Estas Seguro?",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#633c88',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Aceptar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.db.collection("informacion").doc(`${id}`).delete().then(function () {
+          console.log("Document successfully deleted!");
+        }).catch(function (error) {
+          console.error("Error removing document: ", error);
+        });
+        Swal.fire(
+          'Eliminado!',
+          'El dato ha sido eliminado.',
+          'success'
+        )
+      }
+    })
+
+  }
+
 
   datos: any[] = [];
   getData() {
@@ -22,26 +58,12 @@ export class DataComponent implements OnInit {
       .subscribe((querySnapshot) => {
         querySnapshot.docs.forEach((doc) => {
           this.datos.push(doc.data());
+
         });
       });
-  }
-
-  getDeleteButtons(){
-    const btnsDelete = document.querySelectorAll('.btnDelete')
-    btnsDelete.forEach(btn => {
-      btn.addEventListener('click', () =>{
-        console.log("Clickeado")
-      })
-    })
-    
-  }
-
-  ngOnInit(): void {
-    this.getData();
-    this.getDeleteButtons();
-
 
   }
+
 
 }
 
