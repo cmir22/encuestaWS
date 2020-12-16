@@ -1,7 +1,6 @@
-import { variable } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
-
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-tests',
@@ -66,7 +65,27 @@ export class TestsComponent implements OnInit {
       let talla = (<HTMLInputElement>document.querySelector('#talla')).value;
       let diagnosticoPsicologico = (<HTMLInputElement>document.querySelector('#diagnosticoPsicologico')).value;
       e.preventDefault();
-      this.setData(fecha, casaHogar, codigoNNA, primerNombreNNA, fechaNacimiento, curp, gradoEscolar, diagnosticoMedico, peso, talla, diagnosticoPsicologico);
+      
+      //  SweetAler
+      Swal.fire({
+        title: 'Finalizar',
+        text: "¿Estas Seguro?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#633c88',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Aceptar'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.setData(fecha, casaHogar, codigoNNA, primerNombreNNA, fechaNacimiento, curp, gradoEscolar, diagnosticoMedico, peso, talla, diagnosticoPsicologico);
+          Swal.fire(
+            'Finalizado!',
+            'Bien Hecho.',
+            'success'
+          )
+        }
+      })
+      // End SweetAler
 
     })
 

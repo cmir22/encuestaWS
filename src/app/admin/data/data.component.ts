@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import Swal from 'sweetalert2'
-
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
 
 
 @Component({
@@ -12,18 +14,21 @@ import Swal from 'sweetalert2'
 
 export class DataComponent implements OnInit {
 
+  datos: any[] = [];
+  displayedColumns: string[] = ['position'];
+  //dataSource = new MatTableDataSource(this.datos);
+  dataSource: MatTableDataSource<any>;
+  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+
   constructor(private db: AngularFirestore) {
   }
 
-
-
   ngOnInit(): void {
-    this.getData();
-
+    //this.getData();
   }
 
   deleteElement(id) {
-
     Swal.fire({
       title: 'Borrar',
       text: "¿Estas Seguro?",
@@ -46,25 +51,20 @@ export class DataComponent implements OnInit {
         )
       }
     })
-
   }
 
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
 
-  datos: any[] = [];
-  getData() {
-    this.db
-      .collection("informacion")
-      .get()
-      .subscribe((querySnapshot) => {
-        querySnapshot.docs.forEach((doc) => {
-          this.datos.push(doc.data());
-
-        });
-      });
-
+  ngAfterViewInit(): void {
+    this.db.collection<any>('informacion').valueChanges().subscribe(data => {
+      this.dataSource = new MatTableDataSource(data);
+      this.dataSource.paginator = this.paginator;
+    })
+    
   }
 
 
 }
-
-

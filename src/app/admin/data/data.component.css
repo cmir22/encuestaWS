@@ -1,8 +1,10 @@
 /* Toolbar */
 #toolbarText {
+  color: white;
   margin-left: auto;
   margin-right: auto;
   display: flex;
+  text-decoration: none;
 }
 
 #toolbar {
@@ -13,29 +15,107 @@
 /* Div by data*/
 .cardDatos {
   background-color: #633c88;
-  margin-left: 2rem;
-  margin-right: 2rem;
   display: grid;
   margin-top: 1rem;
   color: white;
 }
 
-
 /* CARDS */
 #divCards {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 40rem;
   margin-top: 2rem;
 }
 
-.nombreNNA{
-  font-family: 'Noto Sans', sans-serif;
+.nombreNNA {
+  font-family: "Noto Sans", sans-serif;
+  font-size: 20px;
   color: black;
   border-radius: 2px;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   text-align: center;
-  background-color: #EDE9F2;
+  background-color: white;
 }
 
-.descripcionBD{
-  color: #DED0F2;
-  font-family: 'Noto Sans', sans-serif;
+.descripcionBD {
+  color: #ded0f2;
+  font-family: "Noto Sans", sans-serif;
+}
+h4 {
+  color: white;
+}
+
+#searchBar {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+input {
+  color: black;
+  font-size: 25px;
+}
+
+#thCard {
+  background: rgb(255, 236, 251);
+  background: radial-gradient(
+    circle,
+    rgba(255, 236, 251, 1) 0%,
+    rgba(255, 255, 255, 1) 100%
+  );
+}
+
+#searchLabel {
+  font-size: 20px;
+}
+
+/* Table */
+/* Structure */
+table {
+  width: 100%;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+.searchTable {
+  margin-top: 3rem;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 50rem;
+}
+
+/* Delete Button from table*/
+#deleteButton {
+  float: right;
+  color: white;
+  background-color: #ff797a;
+  background-image: linear-gradient(315deg, #ff797a 0%, #ff2525 74%);
+  margin-bottom: 1rem;
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+mat-card {
+  background-color: #633c88;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+}
+
+.column {
+  float: left;
+  width: 50%;
+  padding: 10px;
+}
+
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+  }
 }
