@@ -17,13 +17,24 @@ export class TestsComponent implements OnInit {
   detector = "";
   habilidadesSociales = "";
   resultadosEvaluacionesABT = "";
-
+  percenil: any = 0;
+  percenilResultado: any = 0;
 
   constructor(private db: AngularFirestore) {
   }
 
+  getPerceptil(percenilEstatura, percenilPeso, percenilEdad) {
+    var percenilEstaturaCentimetros = (percenilEstatura / 100);
+    if (percenilEdad <= 18) {
+      this.percenil = (percenilPeso / (percenilEstaturaCentimetros * percenilEstaturaCentimetros))
+      this.percenilResultado = this.percenil.toFixed(2);
+    } else {
+      this.percenil = "El Niño es mayor de edad";
+    }
+  }
+
   setData(fecha, casaHogar, codigoNNA, primerNombreNNA, fechaNacimiento, curp, gradoEscolar
-    , diagnosticoMedico, peso, talla, diagnosticoPsicologico) {
+    , diagnosticoMedico, peso, diagnosticoPsicologico, percenil,percenilEstatura,percenilEdad) {
     const customID = this.db.createId();
     this.db.collection('informacion').doc(`${customID}`).set({
       Fecha: fecha,
@@ -35,7 +46,6 @@ export class TestsComponent implements OnInit {
       GradoEscolar: gradoEscolar,
       DiagnosticoMedico: diagnosticoMedico,
       Peso: peso,
-      Talla: talla,
       DiagnosticoPsicologico: diagnosticoPsicologico,
       CI: this.ci,
       LectoEscritura: this.lectoEscritura,
@@ -44,15 +54,17 @@ export class TestsComponent implements OnInit {
       Detector: this.detector,
       HabilidadesSociales: this.habilidadesSociales,
       ResultadosEvaluacionesABT: this.resultadosEvaluacionesABT,
-      id: customID
+      id: customID,
+      Percenil: percenil,
+      Estatura: percenilEstatura,
+      Edad: percenilEdad
     })
   }
 
   ngOnInit(): void {
 
-    const form = document.querySelector("#form")
-    form.addEventListener('submit', e => {
-      let ci = "";
+    const formElement = (<HTMLFormElement>document.querySelector("#form"))
+    formElement.addEventListener('submit', async (e) => {
       let fecha = (<HTMLInputElement>document.querySelector('#fecha')).value;
       let casaHogar = (<HTMLInputElement>document.querySelector('#casaHogar')).value;
       let codigoNNA = (<HTMLInputElement>document.querySelector('#codigoNNA')).value;
@@ -62,10 +74,13 @@ export class TestsComponent implements OnInit {
       let gradoEscolar = (<HTMLInputElement>document.querySelector('#gradoEscolar')).value;
       let diagnosticoMedico = (<HTMLInputElement>document.querySelector('#diagnosticoMedico')).value;
       let peso = (<HTMLInputElement>document.querySelector('#peso')).value;
-      let talla = (<HTMLInputElement>document.querySelector('#talla')).value;
       let diagnosticoPsicologico = (<HTMLInputElement>document.querySelector('#diagnosticoPsicologico')).value;
+
+      var percenilEstatura = (<HTMLInputElement>document.querySelector('#estatura')).value;
+      var percenilPeso = (<HTMLInputElement>document.querySelector('#peso')).value;
+      var percenilEdad = (<HTMLInputElement>document.querySelector('#edad')).value;
+      await this.getPerceptil(percenilEstatura, percenilPeso, percenilEdad)
       e.preventDefault();
-      
       //  SweetAler
       Swal.fire({
         title: 'Finalizar',
@@ -77,7 +92,8 @@ export class TestsComponent implements OnInit {
         confirmButtonText: 'Aceptar'
       }).then((result) => {
         if (result.isConfirmed) {
-          this.setData(fecha, casaHogar, codigoNNA, primerNombreNNA, fechaNacimiento, curp, gradoEscolar, diagnosticoMedico, peso, talla, diagnosticoPsicologico);
+          this.setData(fecha, casaHogar, codigoNNA, primerNombreNNA, fechaNacimiento, curp, gradoEscolar, diagnosticoMedico, peso, diagnosticoPsicologico, this.percenilResultado,percenilEstatura,percenilEdad);
+          formElement.reset();
           Swal.fire(
             'Finalizado!',
             'Bien Hecho.',
@@ -86,11 +102,9 @@ export class TestsComponent implements OnInit {
         }
       })
       // End SweetAler
-
     })
 
 
   }
-
 
 }
