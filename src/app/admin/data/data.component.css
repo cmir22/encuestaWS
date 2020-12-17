@@ -38,6 +38,14 @@
   background-color: white;
 }
 
+/* Button export to excel */
+#buttonExcel {
+  color: white;
+  background-color: #74a662;
+  float: right;
+  margin-bottom: 1rem;
+}
+
 .descripcionBD {
   color: #ded0f2;
   font-family: "Noto Sans", sans-serif;
@@ -56,12 +64,8 @@ input {
 }
 
 #thCard {
-  background: rgb(255, 236, 251);
-  background: radial-gradient(
-    circle,
-    rgba(255, 236, 251, 1) 0%,
-    rgba(255, 255, 255, 1) 100%
-  );
+  background-color: #ffeefc;
+  background-image: linear-gradient(240deg, #ffeefc 0%, #f6f4fd 42%);
 }
 
 #searchLabel {

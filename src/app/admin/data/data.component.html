@@ -37,6 +37,9 @@
 </div>
 -->
 <div class="searchTable">
+  <button mat-button (click)="excelDescargar()" id="buttonExcel"><span class="material-icons">
+    table_chart
+    </span> Guardar en Excel</button>
 
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
     <!-- Position Column -->
@@ -89,3 +92,4 @@
   <mat-paginator [pageSizeOptions]="[4, 10, 25, 100]"></mat-paginator>
 
 </div>
+

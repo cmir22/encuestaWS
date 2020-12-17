@@ -31,3 +31,8 @@ ng build --prod
 
 ## Deploy Firebase
 firebase init
+
+## Export to Excel
+
+npm install file-saver
+npm install xlsx

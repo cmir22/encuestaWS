@@ -15,8 +15,9 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCardModule } from '@angular/material/card';
-import {MatTableModule} from '@angular/material/table';
-import {MatPaginatorModule} from '@angular/material/paginator';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 // End Angular Material
 
 import { HomeComponent } from './home/home.component';
@@ -33,6 +34,7 @@ import { LoginComponent } from './admin/login/login.component';
 // End Conection with firebase
 
 const angularMaterial = [
+  MatProgressSpinnerModule,
   MatPaginatorModule,
   MatTableModule,
   MatButtonModule,
