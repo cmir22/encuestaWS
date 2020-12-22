@@ -10,6 +10,16 @@
   background-color: #633c88;
 }
 
+/* Image Logo*/
+#imgLogo {
+  max-width: 15rem;
+  max-height: 15rem;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  margin-top: 2rem;
+}
+
 /* Text Head */
 #textHead {
   text-align: center;
