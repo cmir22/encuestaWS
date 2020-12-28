@@ -1,3 +1,4 @@
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import Swal from 'sweetalert2'
@@ -19,22 +20,34 @@ export class TestsComponent implements OnInit {
   resultadosEvaluacionesABT = "";
   percenil: any = 0;
   percenilResultado: any = 0;
+  nivelPercentil = '';
+
 
   constructor(private db: AngularFirestore) {
   }
 
-  getPerceptil(percenilEstatura, percenilPeso, percenilEdad) {
+  getPercentilLevel(percenilResultado) {
+    if (percenilResultado <= 18.4) this.nivelPercentil = 'Bajo Peso';
+    if (percenilResultado >= 18.5 && percenilResultado <= 24.9) this.nivelPercentil = 'Normal';
+    if (percenilResultado >= 25.0 && percenilResultado <= 29.9) this.nivelPercentil = 'Sobrepeso';
+    if (percenilResultado >= 30) this.nivelPercentil = 'Obeso'
+  }
+
+
+  getPercentil(percenilEstatura, percenilPeso, percenilEdad) {
     var percenilEstaturaCentimetros = (percenilEstatura / 100);
     if (percenilEdad <= 18) {
       this.percenil = (percenilPeso / (percenilEstaturaCentimetros * percenilEstaturaCentimetros))
       this.percenilResultado = this.percenil.toFixed(2);
+      this.getPercentilLevel(this.percenilResultado)
+
     } else {
       this.percenil = "El Niño es mayor de edad";
     }
   }
 
   setData(fecha, casaHogar, codigoNNA, primerNombreNNA, fechaNacimiento, curp, gradoEscolar
-    , diagnosticoMedico, peso, diagnosticoPsicologico, percenil,percenilEstatura,percenilEdad) {
+    , diagnosticoMedico, peso, diagnosticoPsicologico, percenil, percenilEstatura, percenilEdad) {
     const customID = this.db.createId();
     this.db.collection('informacion').doc(`${customID}`).set({
       Fecha: fecha,
@@ -57,12 +70,13 @@ export class TestsComponent implements OnInit {
       id: customID,
       Percenil: percenil,
       Estatura: percenilEstatura,
-      Edad: percenilEdad
+      Edad: percenilEdad,
+      NivelPercentil: this.nivelPercentil
     })
   }
 
   ngOnInit(): void {
-
+    console.log(this.nivelPercentil)
     const formElement = (<HTMLFormElement>document.querySelector("#form"))
     formElement.addEventListener('submit', async (e) => {
       let fecha = (<HTMLInputElement>document.querySelector('#fecha')).value;
@@ -79,7 +93,7 @@ export class TestsComponent implements OnInit {
       var percenilEstatura = (<HTMLInputElement>document.querySelector('#estatura')).value;
       var percenilPeso = (<HTMLInputElement>document.querySelector('#peso')).value;
       var percenilEdad = (<HTMLInputElement>document.querySelector('#edad')).value;
-      await this.getPerceptil(percenilEstatura, percenilPeso, percenilEdad)
+      await this.getPercentil(percenilEstatura, percenilPeso, percenilEdad)
       e.preventDefault();
       //  SweetAler
       Swal.fire({
@@ -92,7 +106,7 @@ export class TestsComponent implements OnInit {
         confirmButtonText: 'Aceptar'
       }).then((result) => {
         if (result.isConfirmed) {
-          this.setData(fecha, casaHogar, codigoNNA, primerNombreNNA, fechaNacimiento, curp, gradoEscolar, diagnosticoMedico, peso, diagnosticoPsicologico, this.percenilResultado,percenilEstatura,percenilEdad);
+          this.setData(fecha, casaHogar, codigoNNA, primerNombreNNA, fechaNacimiento, curp, gradoEscolar, diagnosticoMedico, peso, diagnosticoPsicologico, this.percenilResultado, percenilEstatura, percenilEdad);
           formElement.reset();
           Swal.fire(
             'Finalizado!',

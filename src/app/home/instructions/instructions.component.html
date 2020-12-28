@@ -13,22 +13,19 @@
 
 <!--------------------------------------------->
 <mat-card id="divCuestions">
-  <form id="form" action="/tests">
+  <form id="form" action="#">
     <h1 id="textHead">Ingrese sus Datos</h1>
     <mat-form-field class="example-form-field">
-      <label for="exampleInputEmail1">Usuario</label>
-      <input matInput type="email" />
+      <label>Usuario</label>
+      <input matInput id="email" />
     </mat-form-field>
 
     <mat-form-field class="example-form-field">
-      <label for="exampleInputPassword1">Contraseña</label>
-      <input matInput type="email" />
+      <label>Contraseña</label>
+      <input matInput id="password" />
     </mat-form-field>
 
-    <a href="/tests">
-      <button mat-button id="btnContinue">Iniciar Sesion</button>
-    </a>
-
+    <button mat-button id="btnContinue" type="submit">Iniciar Sesion</button>
   </form>
 </mat-card>
 <!--------------------------------------------->
