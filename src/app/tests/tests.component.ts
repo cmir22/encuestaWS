@@ -3,7 +3,6 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import * as firebase from 'firebase';
 import Swal from 'sweetalert2'
 
-
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 @Component({
@@ -67,23 +66,21 @@ export class TestsComponent implements OnInit {
 
   ngOnInit(): void {
 
-    var manolo = this.afsAuth.currentUser
-    if(manolo == null){
-      this.router.navigate(['/'])
-    }
-    else{
-      console.log(manolo)
-    }
+    this.afsAuth.onAuthStateChanged(function (user) {
+      if (user) {
+        console.log('Si tiene cuenta')
+      }else window.location.href = 'login'
+    });
+    // this.afsAuth.onAuthStateChanged(function(user) {
+    //   if (user) {
+    //     console.log('Si tiene cuenta')
+    //   }
+    //   else{
+    //     this.router.navigate(['/login'])
+    //   }
+    // });
 
-    // var user = firebase.auth().currentUser;
-    // if (user == null) {
-    //   console.log("usuario nullo");
-    //   window.open("index.html", "_self", true);
 
-
-    // } else { //Usuario Activo  
-
-    //   //Codigo
 
       const formElement = (<HTMLFormElement>document.querySelector("#form"))
       formElement.addEventListener('submit', async (e) => {

@@ -10,9 +10,9 @@ import { DataComponent } from "./admin/data/data.component";
 
 const routes: Routes = [
   {path: '',component:HomeComponent},
-  {path: 'instructions',component: InstructionsComponent},
+  {path: 'login',component: InstructionsComponent},
   {path: 'tests',component:TestsComponent},
-  {path: 'login', component: LoginComponent},
+  // {path: 'login', component: LoginComponent},
   {path: 'data',component:DataComponent}
 ];
 
