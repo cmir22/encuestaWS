@@ -1,34 +1,33 @@
-<nav>
-  <mat-toolbar id="toolbar">
-    <h1 id="toolbarText">Inicio de Sesion</h1>
-    <span class="example-spacer"></span>
-  </mat-toolbar>
-</nav>
 
-<img
-  id="imgLogo"
-  src="https://firebasestorage.googleapis.com/v0/b/encuestaws.appspot.com/o/Images%20Main%20Screen%2FCPW_Logo.png?alt=media&token=f50d1195-b35b-41c1-81f1-214fbff52fc3"
-  alt="logo create purpose"
-/>
+  <nav>
+    <mat-toolbar id="toolbar">
+      <h1 id="toolbarText">Inicio de Sesion</h1>
+      <span class="example-spacer"></span>
+    </mat-toolbar>
+  </nav>
 
-<!--------------------------------------------->
-<mat-card id="divCuestions">
-  <form id="form" action="/tests">
-    <h1 id="textHead">Ingrese sus Datos</h1>
-    <mat-form-field class="example-form-field">
-      <label for="exampleInputEmail1">Usuario</label>
-      <input matInput type="email" />
-    </mat-form-field>
+  <img
+    id="imgLogo"
+    src="https://firebasestorage.googleapis.com/v0/b/encuestaws.appspot.com/o/Images%20Main%20Screen%2FCPW_Logo.png?alt=media&token=f50d1195-b35b-41c1-81f1-214fbff52fc3"
+    alt="logo create purpose"
+  />
 
-    <mat-form-field class="example-form-field">
-      <label for="exampleInputPassword1">Contraseña</label>
-      <input matInput type="email" />
-    </mat-form-field>
+  <!--------------------------------------------->
+  <mat-card id="divCuestions">
+    <form id="form" action="#">
+      <h1 id="textHead">Ingrese sus Datos</h1>
+      <mat-form-field class="example-form-field">
+        <label>Usuario</label>
+        <input matInput type="text" id="email" />
+      </mat-form-field>
 
-    <a href="/tests">
-      <button mat-button id="btnContinue">Iniciar Sesion</button>
-    </a>
+      <mat-form-field class="example-form-field">
+        <label>Contraseña</label>
+        <input matInput type="password" id="password" />
+      </mat-form-field>
 
-  </form>
-</mat-card>
-<!--------------------------------------------->
+      <button mat-button id="btnContinue" type="submit">Iniciar Sesion</button>
+    </form>
+  </mat-card>
+  <!--------------------------------------------->
+

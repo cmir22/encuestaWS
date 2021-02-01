@@ -7,10 +7,9 @@ import { Component, ElementRef, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private elementRef: ElementRef) { }
+  constructor(/*private elementRef: ElementRef*/) { }
 
   ngOnInit(): void {
-   //this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = '#E6D3ED';
   }
 
 }
