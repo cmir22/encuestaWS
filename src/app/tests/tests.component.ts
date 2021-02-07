@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
-import * as firebase from 'firebase';
 import Swal from 'sweetalert2'
 
 import { AngularFireAuth } from '@angular/fire/auth';
@@ -22,15 +21,25 @@ export class TestsComponent implements OnInit {
   resultadosEvaluacionesABT = "";
   percenil: any = 0;
   percenilResultado: any = 0;
+  nivelPercentil = '';
 
-  constructor(private db: AngularFirestore,private afsAuth: AngularFireAuth,private router: Router) {
+  constructor(private db: AngularFirestore, private afsAuth: AngularFireAuth, private router: Router) {
   }
 
-  getPerceptil(percenilEstatura, percenilPeso, percenilEdad) {
+  getPercentilLevel(percenilResultado) {
+    if (percenilResultado <= 18.4) this.nivelPercentil = 'Bajo Peso';
+    if (percenilResultado >= 18.5 && percenilResultado <= 24.9) this.nivelPercentil = 'Normal';
+    if (percenilResultado >= 25.0 && percenilResultado <= 29.9) this.nivelPercentil = 'Sobrepeso';
+    if (percenilResultado >= 30) this.nivelPercentil = 'Obeso'
+  }
+
+  getPercentil(percenilEstatura, percenilPeso, percenilEdad) {
     var percenilEstaturaCentimetros = (percenilEstatura / 100);
     if (percenilEdad <= 18) {
       this.percenil = (percenilPeso / (percenilEstaturaCentimetros * percenilEstaturaCentimetros))
       this.percenilResultado = this.percenil.toFixed(2);
+      this.getPercentilLevel(this.percenilResultado)
+
     } else {
       this.percenil = "El Niño es mayor de edad";
     }
@@ -60,7 +69,8 @@ export class TestsComponent implements OnInit {
       id: customID,
       Percenil: percenil,
       Estatura: percenilEstatura,
-      Edad: percenilEdad
+      Edad: percenilEdad,
+      NivelPercentil: this.nivelPercentil
     })
   }
 
@@ -69,61 +79,53 @@ export class TestsComponent implements OnInit {
     this.afsAuth.onAuthStateChanged(function (user) {
       if (user) {
         console.log('Si tiene cuenta')
-      }else window.location.href = 'login'
+      } else window.location.href = 'login'
     });
-    // this.afsAuth.onAuthStateChanged(function(user) {
-    //   if (user) {
-    //     console.log('Si tiene cuenta')
-    //   }
-    //   else{
-    //     this.router.navigate(['/login'])
-    //   }
-    // });
 
+    console.log(this.nivelPercentil)
+    const formElement = (<HTMLFormElement>document.querySelector("#form"))
+    formElement.addEventListener('submit', async (e) => {
+      let fecha = (<HTMLInputElement>document.querySelector('#fecha')).value;
+      let casaHogar = (<HTMLInputElement>document.querySelector('#casaHogar')).value;
+      let codigoNNA = (<HTMLInputElement>document.querySelector('#codigoNNA')).value;
+      let primerNombreNNA = (<HTMLInputElement>document.querySelector('#primerNombreNNA')).value;
+      let fechaNacimiento = (<HTMLInputElement>document.querySelector('#fechaNacimiento')).value;
+      let curp = (<HTMLInputElement>document.querySelector('#curp')).value;
+      let gradoEscolar = (<HTMLInputElement>document.querySelector('#gradoEscolar')).value;
+      let diagnosticoMedico = (<HTMLInputElement>document.querySelector('#diagnosticoMedico')).value;
+      let peso = (<HTMLInputElement>document.querySelector('#peso')).value;
+      let diagnosticoPsicologico = (<HTMLInputElement>document.querySelector('#diagnosticoPsicologico')).value;
 
-
-      const formElement = (<HTMLFormElement>document.querySelector("#form"))
-      formElement.addEventListener('submit', async (e) => {
-        let fecha = (<HTMLInputElement>document.querySelector('#fecha')).value;
-        let casaHogar = (<HTMLInputElement>document.querySelector('#casaHogar')).value;
-        let codigoNNA = (<HTMLInputElement>document.querySelector('#codigoNNA')).value;
-        let primerNombreNNA = (<HTMLInputElement>document.querySelector('#primerNombreNNA')).value;
-        let fechaNacimiento = (<HTMLInputElement>document.querySelector('#fechaNacimiento')).value;
-        let curp = (<HTMLInputElement>document.querySelector('#curp')).value;
-        let gradoEscolar = (<HTMLInputElement>document.querySelector('#gradoEscolar')).value;
-        let diagnosticoMedico = (<HTMLInputElement>document.querySelector('#diagnosticoMedico')).value;
-        let peso = (<HTMLInputElement>document.querySelector('#peso')).value;
-        let diagnosticoPsicologico = (<HTMLInputElement>document.querySelector('#diagnosticoPsicologico')).value;
-
-        var percenilEstatura = (<HTMLInputElement>document.querySelector('#estatura')).value;
-        var percenilPeso = (<HTMLInputElement>document.querySelector('#peso')).value;
-        var percenilEdad = (<HTMLInputElement>document.querySelector('#edad')).value;
-        await this.getPerceptil(percenilEstatura, percenilPeso, percenilEdad)
-        e.preventDefault();
-        //  SweetAler
-        Swal.fire({
-          title: 'Finalizar',
-          text: "¿Estas Seguro?",
-          icon: 'warning',
-          showCancelButton: true,
-          confirmButtonColor: '#633c88',
-          cancelButtonColor: '#d33',
-          confirmButtonText: 'Aceptar'
-        }).then((result) => {
-          if (result.isConfirmed) {
-            this.setData(fecha, casaHogar, codigoNNA, primerNombreNNA, fechaNacimiento, curp, gradoEscolar, diagnosticoMedico, peso, diagnosticoPsicologico, this.percenilResultado, percenilEstatura, percenilEdad);
-            formElement.reset();
-            Swal.fire(
-              'Finalizado!',
-              'Bien Hecho.',
-              'success'
-            )
-          }
-        })
-        // End SweetAler
+      var percenilEstatura = (<HTMLInputElement>document.querySelector('#estatura')).value;
+      var percenilPeso = (<HTMLInputElement>document.querySelector('#peso')).value;
+      var percenilEdad = (<HTMLInputElement>document.querySelector('#edad')).value;
+      await this.getPercentil(percenilEstatura, percenilPeso, percenilEdad)
+      e.preventDefault();
+      //  SweetAler
+      Swal.fire({
+        title: 'Finalizar',
+        text: "¿Estas Seguro?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#633c88',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Aceptar'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.setData(fecha, casaHogar, codigoNNA, primerNombreNNA, fechaNacimiento, curp, gradoEscolar, diagnosticoMedico, peso, diagnosticoPsicologico, this.percenilResultado, percenilEstatura, percenilEdad);
+          formElement.reset();
+          Swal.fire(
+            'Finalizado!',
+            'Bien Hecho.',
+            'success'
+          )
+        }
       })
+      // End SweetAler
+    })
 
 
-    }
 
   }
+
+}

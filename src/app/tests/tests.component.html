@@ -2,20 +2,26 @@
   <mat-toolbar id="toolbar">
     <h1 id="toolbarText">Cuestionario de Evaluación</h1>
     <span class="example-spacer"></span>
-    <a routerLink="/data" style="color: white;"><button mat-button><span class="material-icons">
+    <a href="/data" style="color: white;"><button mat-button><span class="material-icons">
       folder_shared
       </span></button></a>
   </mat-toolbar>
 </nav>
 
-<h1 id="textHead">Ingrese su Informacion</h1>
+<img
+  id="imgLogo"
+  src="https://firebasestorage.googleapis.com/v0/b/encuestaws.appspot.com/o/Images%20Main%20Screen%2FCPW_Logo.png?alt=media&token=f50d1195-b35b-41c1-81f1-214fbff52fc3"
+  alt="logo create purpose"
+/>
+
+<!--<h1 id="textHead">Ingrese su Informacion</h1>-->
 
 <!------------------------->
 <div id="divCuestions">
   <form action="#" id="form">
     <!-------------------------------------------------------->
     <mat-form-field appearance="fill" class="alingItems">
-      <mat-label>Elija la Fecha</mat-label>
+      <mat-label>Seleccione la Fecha</mat-label>
       <input matInput [matDatepicker]="picker" id="fecha" />
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
@@ -23,19 +29,19 @@
     <!-------------------------------------------------------->
     <mat-card class="alingItems" id="fieldCasaHogar">
       <mat-form-field class="example-full-width alingItems">
-        <h3>Nombre de la casa hogar o alvergue</h3>
+        <h3>Nombre de Institución o Albergue</h3>
         <input matInput id="casaHogar" />
       </mat-form-field>
     </mat-card>
     <!-------------------------------------------------------->
     <mat-card class="alingItems" id="nna">
       <mat-form-field class="example-full-width">
-        <h3>Código de la NNA</h3>
+        <h3>Código del NNA</h3>
         <input matInput id="codigoNNA" />
       </mat-form-field>
 
       <mat-form-field class="example-full-width">
-        <h3>Primer Nombre de la NNA</h3>
+        <h3>Nombre del NNA</h3>
         <input matInput id="primerNombreNNA" />
       </mat-form-field>
 
@@ -88,6 +94,7 @@
       <mat-form-field appearance="fill">
         <mat-label>CI</mat-label>
         <mat-select [(value)]="ci">
+          <mat-option value="NA">NA</mat-option>
           <mat-option value="Bajo">Bajo</mat-option>
           <mat-option value="Alerta">Alerta</mat-option>
           <mat-option value="Promedio">Promedio</mat-option>
@@ -98,6 +105,7 @@
       <mat-form-field appearance="fill">
         <mat-label>LectoEscritura</mat-label>
         <mat-select [(value)]="lectoEscritura">
+          <mat-option value="NA">NA</mat-option>
           <mat-option value="Bajo">Bajo</mat-option>
           <mat-option value="Alerta">Alerta</mat-option>
           <mat-option value="Promedio">Promedio</mat-option>
@@ -108,6 +116,7 @@
       <mat-form-field appearance="fill">
         <mat-label>Raven</mat-label>
         <mat-select [(value)]="raven">
+          <mat-option value="NA">NA</mat-option>
           <mat-option value="Bajo">Bajo</mat-option>
           <mat-option value="Alerta">Alerta</mat-option>
           <mat-option value="Promedio">Promedio</mat-option>
@@ -118,6 +127,7 @@
       <mat-form-field appearance="fill">
         <mat-label>ENI</mat-label>
         <mat-select [(value)]="eni">
+          <mat-option value="NA">NA</mat-option>
           <mat-option value="Bajo">Bajo</mat-option>
           <mat-option value="Alerta">Alerta</mat-option>
           <mat-option value="Promedio">Promedio</mat-option>
@@ -128,6 +138,7 @@
       <mat-form-field appearance="fill">
         <mat-label>Detector</mat-label>
         <mat-select [(value)]="detector">
+          <mat-option value="NA">NA</mat-option>
           <mat-option value="Bajo">Bajo</mat-option>
           <mat-option value="Alerta">Alerta</mat-option>
           <mat-option value="Promedio">Promedio</mat-option>
@@ -138,6 +149,7 @@
       <mat-form-field appearance="fill">
         <mat-label>Habilidades Sociales</mat-label>
         <mat-select [(value)]="habilidadesSociales">
+          <mat-option value="NA">NA</mat-option>
           <mat-option value="Bajo">Bajo</mat-option>
           <mat-option value="Alerta">Alerta</mat-option>
           <mat-option value="Promedio">Promedio</mat-option>
@@ -148,6 +160,7 @@
       <mat-form-field appearance="fill">
         <mat-label>Resultados de Evaluciones ABT</mat-label>
         <mat-select [(value)]="resultadosEvaluacionesABT">
+          <mat-option value="NA">NA</mat-option>
           <mat-option value="1">1</mat-option>
           <mat-option value="2">2</mat-option>
           <mat-option value="3">3</mat-option>
