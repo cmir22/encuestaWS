@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* Toolbar */
 #toolbarText {
   margin-left: auto;
@@ -88,3 +89,95 @@ mat-card {
 .respuesta {
   margin-top: -1rem;
 }
+=======
+/* Toolbar */
+#toolbarText {
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+}
+
+#toolbar {
+  color: white;
+  background-color: #633c88;
+}
+
+/* Image Logo*/
+#imgLogo {
+  max-width: 15rem;
+  max-height: 15rem;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  margin-top: 2rem;
+}
+
+/* Text Head */
+#textHead {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+/* Div Cuestions */
+#divCuestions {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 50rem;
+  margin-top: 3rem;
+}
+
+/* Cards*/
+mat-card {
+  margin-top: 1rem;
+}
+
+/* Aling Items cards */
+.alingItems {
+  margin: 20px;
+  display: grid;
+  grid-template-columns: auto;
+  grid-gap: 10px;
+  padding: 10px;
+}
+
+/* fieldCasaHogar  background-color: #633c88; */
+#fieldCasaHogar {
+  background-color: #e8dbff;
+
+  color: black;
+}
+
+/* NNA */
+#nna {
+  background-color: #e8dbff;
+  color: black;
+}
+
+/*fieldMedico*/
+#fieldMedico {
+  background-color: #e8dbff;
+  color: black;
+}
+
+/* fieldPsicologico */
+#fieldPsicologico {
+  background-color: #e8dbff;
+}
+
+/* Button Save*/
+
+#btnContinue {
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  font-size: 25px;
+  background-color: #633c88;
+  color: white;
+  margin-top: 2rem;
+}
+
+/* Respuesta field*/
+.respuesta {
+  margin-top: -1rem;
+}
+>>>>>>> 9de37d70bf4f8852aa6d3bf59308fe7b745ab07f

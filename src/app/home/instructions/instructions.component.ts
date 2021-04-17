@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
@@ -40,3 +41,41 @@ export class InstructionsComponent implements OnInit {
 
 
 }
+=======
+import { Component, OnInit } from '@angular/core';
+import firebase from '@firebase/app'
+import '@firebase/auth'
+
+@Component({
+  selector: 'app-instructions',
+  templateUrl: './instructions.component.html',
+  styleUrls: ['./instructions.component.css']
+})
+export class InstructionsComponent implements OnInit {
+
+  login(email, password) {
+    firebase.auth().signInWithEmailAndPassword(email, password)
+      .then((user) => {
+        console.log('haz iniciado sesion')
+      })
+      .catch((error) => {
+        var errorCode = error.code;
+        var errorMessage = error.message;
+      });
+  }
+
+  constructor() { }
+
+  ngOnInit(): void {
+    var form = (<HTMLFormElement>document.querySelector('#form'))
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault()
+      var email = (<HTMLInputElement>document.querySelector('#email')).value
+      var password = (<HTMLInputElement>document.querySelector('#password')).value
+      this.login(email, password)
+    })
+  }
+
+}
+>>>>>>> 9de37d70bf4f8852aa6d3bf59308fe7b745ab07f
