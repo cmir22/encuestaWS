@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import firebase from '@firebase/app'
-import '@firebase/auth'
+import { AngularFireAuth } from '@angular/fire/auth';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { Router } from '@angular/router';
 
+
+import firebase from 'firebase'
 @Component({
   selector: 'app-instructions',
   templateUrl: './instructions.component.html',
@@ -9,28 +12,31 @@ import '@firebase/auth'
 })
 export class InstructionsComponent implements OnInit {
 
-  login(email, password) {
-    firebase.auth().signInWithEmailAndPassword(email, password)
-      .then((user) => {
-        console.log('haz iniciado sesion')
-      })
-      .catch((error) => {
-        var errorCode = error.code;
-        var errorMessage = error.message;
-      });
-  }
+  constructor(private afsAuth: AngularFireAuth,private router: Router) { }
 
-  constructor() { }
+  loginByEmail(email,password) {
+    this.afsAuth.signInWithEmailAndPassword(email,password)
+    .then((user) => {
+      this.router.navigate(['/tests'])
+    })
+    .catch((error) => {
+      var errorCode = error.code;
+      var errorMessage = error.message;
+    });
+  }
 
   ngOnInit(): void {
-    var form = (<HTMLFormElement>document.querySelector('#form'))
+    var form = document.getElementById('form');
 
-    form.addEventListener('submit', (e) => {
-      e.preventDefault()
-      var email = (<HTMLInputElement>document.querySelector('#email')).value
-      var password = (<HTMLInputElement>document.querySelector('#password')).value
-      this.login(email, password)
+    form.addEventListener('submit', async element => {
+      element.preventDefault();
+      let email = (<HTMLInputElement>document.getElementById('email')).value;
+      let password = (<HTMLInputElement>document.getElementById('password')).value;
+      this.loginByEmail(email,password)
+      console.log('jalo', email, password)
     })
   }
+
+
 
 }

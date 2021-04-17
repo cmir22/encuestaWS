@@ -1,8 +1,9 @@
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import Swal from 'sweetalert2'
 
+import { AngularFireAuth } from '@angular/fire/auth';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-tests',
   templateUrl: './tests.component.html',
@@ -22,8 +23,7 @@ export class TestsComponent implements OnInit {
   percenilResultado: any = 0;
   nivelPercentil = '';
 
-
-  constructor(private db: AngularFirestore) {
+  constructor(private db: AngularFirestore, private afsAuth: AngularFireAuth, private router: Router) {
   }
 
   getPercentilLevel(percenilResultado) {
@@ -32,7 +32,6 @@ export class TestsComponent implements OnInit {
     if (percenilResultado >= 25.0 && percenilResultado <= 29.9) this.nivelPercentil = 'Sobrepeso';
     if (percenilResultado >= 30) this.nivelPercentil = 'Obeso'
   }
-
 
   getPercentil(percenilEstatura, percenilPeso, percenilEdad) {
     var percenilEstaturaCentimetros = (percenilEstatura / 100);
@@ -76,6 +75,13 @@ export class TestsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    this.afsAuth.onAuthStateChanged(function (user) {
+      if (user) {
+        console.log('Si tiene cuenta')
+      } else window.location.href = 'login'
+    });
+
     console.log(this.nivelPercentil)
     const formElement = (<HTMLFormElement>document.querySelector("#form"))
     formElement.addEventListener('submit', async (e) => {
@@ -117,6 +123,7 @@ export class TestsComponent implements OnInit {
       })
       // End SweetAler
     })
+
 
 
   }

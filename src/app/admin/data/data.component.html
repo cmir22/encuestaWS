@@ -1,13 +1,13 @@
-
 <nav>
   <mat-toolbar id="toolbar">
     <h1 id="toolbarText">Cuestionario de Evaluación</h1>
     <span class="example-spacer"></span>
-    <a href="/tests" style="color: white;"><button mat-button><span class="material-icons">
+    <a routerLink="/tests" style="color: white;"><button mat-button><span class="material-icons">
       assignment
       </span></button></a>
   </mat-toolbar>
 </nav>
+
 
 <div class="searchTable">
   <button mat-button (click)="excelDescargar()" id="buttonExcel"><span class="material-icons">
@@ -33,7 +33,7 @@
         <h4><span class="descripcionBD">Grado Escolar: </span>{{ element.GradoEscolar }}</h4>
         <h4><span class="descripcionBD">Diagnostico Medico: </span>{{ element.DiagnosticoMedico }}</h4>
         <h4><span class="descripcionBD">Peso: </span>{{ element.Peso }}</h4>
-        <h4><span class="descripcionBD">Percentil: </span>{{ element.Percenil }}   ( {{element.NivelPercentil}} )</h4>
+        <h4><span class="descripcionBD">Percentil: </span>{{ element.Percenil }}</h4>
           </div>
           <div class="column" >
         <h4><span class="descripcionBD">Estatura: </span>{{ element.Estatura }}</h4>
@@ -65,4 +65,3 @@
   <mat-paginator [pageSizeOptions]="[4, 10, 25, 100]"></mat-paginator>
 
 </div>
-

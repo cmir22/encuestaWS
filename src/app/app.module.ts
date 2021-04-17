@@ -31,6 +31,10 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { DataComponent } from './admin/data/data.component';
 import { LoginComponent } from './admin/login/login.component';
+
+
+import { AngularFireStorageModule } from '@angular/fire/storage';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 // End Conection with firebase
 
 const angularMaterial = [
@@ -67,6 +71,8 @@ const angularMaterial = [
     // Import Conection with firebase
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
+    AngularFireStorageModule,
+    AngularFireAuthModule
     // End Import Conection with firebase
   ],
   providers: [],

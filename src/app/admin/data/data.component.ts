@@ -6,6 +6,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import * as FileSaver from 'file-saver';
 import * as XLSX from 'xlsx';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { NavigationEnd, Router } from '@angular/router';
 
 const EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
 const EXCEL_EXTENSION = '.xlsx';
@@ -36,7 +38,7 @@ export class DataComponent implements OnInit {
     FileSaver.saveAs(data, fileName + '_export_' + new Date().getTime() + EXCEL_EXTENSION);
   }
 
-  constructor(private db: AngularFirestore) {
+  constructor(private db: AngularFirestore, private afsAuth: AngularFireAuth, private router: Router) {
   }
 
   getData() {
@@ -50,7 +52,21 @@ export class DataComponent implements OnInit {
       });
   }
 
+  navigate() {
+    this.router.navigate(['/login'])
+  }
+
+
   ngOnInit(): void {
+
+
+    this.afsAuth.onAuthStateChanged(function (user) {
+      if (user) {
+        console.log('Si tiene cuenta')
+      } else window.location.href = 'login'
+    });
+
+
     this.getData();
   }
 
