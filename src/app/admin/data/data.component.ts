@@ -20,6 +20,9 @@ const EXCEL_EXTENSION = '.xlsx';
 
 export class DataComponent implements OnInit {
 
+  constructor(private db: AngularFirestore, private afsAuth: AngularFireAuth, private router: Router) {
+  }
+  
   datos: any[] = [];
   displayedColumns: string[] = ['position'];
   //dataSource = new MatTableDataSource(this.datos);
@@ -38,7 +41,15 @@ export class DataComponent implements OnInit {
     FileSaver.saveAs(data, fileName + '_export_' + new Date().getTime() + EXCEL_EXTENSION);
   }
 
-  constructor(private db: AngularFirestore, private afsAuth: AngularFireAuth, private router: Router) {
+
+  ngOnInit(): void {
+    this.afsAuth.onAuthStateChanged(function (user) {
+      if (user) {
+        console.log('Si tiene cuenta')
+      } else window.location.href = 'login'
+    });
+
+    this.getData();
   }
 
   getData() {
@@ -56,19 +67,6 @@ export class DataComponent implements OnInit {
     this.router.navigate(['/login'])
   }
 
-
-  ngOnInit(): void {
-
-
-    this.afsAuth.onAuthStateChanged(function (user) {
-      if (user) {
-        console.log('Si tiene cuenta')
-      } else window.location.href = 'login'
-    });
-
-
-    this.getData();
-  }
 
   excelDescargar() {
     this.exportAsExcelFile(this.datos, 'Create_Purpose_Database');

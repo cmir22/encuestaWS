@@ -119,6 +119,7 @@ export class TestsComponent implements OnInit {
             'Bien Hecho.',
             'success'
           )
+          location.reload();
         }
       })
       // End SweetAler

@@ -1,10 +1,9 @@
 <nav>
   <mat-toolbar id="toolbar">
     <h1 id="toolbarText">Cuestionario de Evaluación</h1>
-    <span class="example-spacer"></span>
-    <a href="/data" style="color: white;"><button mat-button><span class="material-icons">
-      folder_shared
-      </span></button></a>
+    <button mat-button [routerLink]="['/data']">
+      <span class="material-icons"> folder_shared </span>
+    </button>
   </mat-toolbar>
 </nav>
 
